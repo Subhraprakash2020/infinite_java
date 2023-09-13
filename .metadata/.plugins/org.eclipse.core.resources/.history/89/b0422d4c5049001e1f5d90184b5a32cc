@@ -1,0 +1,19 @@
+package com.java.leave;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class LeaveDetails implements Serializable{
+	
+	private int leaveId;
+	private int empno;
+	private String name;
+	private Date leaveStartDate;
+	private Date leaveEndDate;
+	private Date leaveAppliedOn;
+	private int noOfDays;
+	private LeaveType leaveType;
+	private LeaveStatus leaveStatus;
+	private String managerComments;
+
+}

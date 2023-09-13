@@ -1,0 +1,46 @@
+package com.java.leave;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class LeaveImpl implements LeaveDAO{
+	
+	ArrayList<Integer> arr1 = new ArrayList<>();
+	private Date leaveStartDate;
+	private Date leaveEndDate;
+	static List<LeaveDetails> leaveList;
+	
+	static {
+		leaveList = new ArrayList<LeaveDetails>();
+	}
+
+	@Override
+	public List<LeaveDetails> showLeaveDao() {
+		// TODO Auto-generated method stub
+		return leaveList;
+	}
+	
+	public int generateLeaveID() {
+		if(leaveList.size() == 0) {
+			return 1;
+		}
+		else {
+			return leaveList.get(leaveList.size()-1).getLeaveId()+1;
+		}
+	}
+
+	@Override
+	public String addLeaveDao(LeaveDetails leave_details) {
+		// TODO Auto-generated method stub
+		leaveList.add(leave_details);
+		return "Leave record inserted";
+	}
+	
+	public long calculateDateDifference(Date leaveStartDate, Date leaveEndDate) {
+        long differenceInMillis = leaveStartDate.getTime() - leaveEndDate.getTime();
+        return differenceInMillis / (24 * 60 * 60 * 1000);
+    }
+	long totalDays = calculateDateDifference(leaveStartDate, leaveEndDate);
+
+}

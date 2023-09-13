@@ -1,0 +1,22 @@
+package com.java.leave;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LeaveImpl implements LeaveDAO{
+	
+	ArrayList<Integer> arr1 = new ArrayList<>();
+
+	@Override
+	public List<LeaveDetails> showLeaveDao() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String addLeaveDao(LeaveDetails leave_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

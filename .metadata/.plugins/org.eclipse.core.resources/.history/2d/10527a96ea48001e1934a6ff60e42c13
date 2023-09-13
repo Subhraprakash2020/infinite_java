@@ -1,0 +1,8 @@
+package com.java.leave;
+
+import java.util.List;
+
+public interface LeaveDAO {
+	List<LeaveDetails> showLeaveDao();
+	
+}

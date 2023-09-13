@@ -1,0 +1,81 @@
+package com.java.leave;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LeaveImpl implements LeaveDAO{
+	
+	ArrayList<Integer> arr1 = new ArrayList<>();
+	static List<LeaveDetails> leaveList;
+	
+	static {
+		leaveList = new ArrayList<LeaveDetails>();
+	}
+
+	@Override
+	public List<LeaveDetails> showLeaveDao() {
+		// TODO Auto-generated method stub
+		return leaveList;
+	}
+	
+	public int generateLeaveID() {
+		if(leaveList.size() == 0) {
+			return 1;
+		}
+		else {
+			return leaveList.get(leaveList.size()-1).getLeaveId()+1;
+		}
+	}
+
+	@Override
+	public String addLeaveDao(LeaveDetails leave_details) {
+		// TODO Auto-generated method stub
+		leaveList.add(leave_details);
+		return "Leave record inserted";
+	}
+
+	@Override
+	public LeaveDetails searchLeaveIdDao(int empno) {
+		// TODO Auto-generated method stub
+		LeaveDetails leaveIdFound = null;
+		for (LeaveDetails leave_details : leaveList) {
+			leaveIdFound = leave_details;
+		}
+		return leaveIdFound;
+	}
+
+	@Override
+	public String deleteLeaveIdDao(int empno) {
+		// TODO Auto-generated method stub
+		LeaveDetails leave_found = searchLeaveIdDao(empno);
+		if(leave_found != null) {
+			leaveList.remove(empno);
+			return "Employ applicationrecord deleted";
+		}
+		return "Application not found";
+		
+	}
+
+
+	@Override
+	public String updateLeaveIdDao(LeaveDetails updateLeaveId) {
+		// TODO Auto-generated method stub
+		LeaveDetails leaveFound = searchLeaveIdDao(updateLeaveId.getEmpno());
+		if(leaveFound != null) {
+			for (LeaveDetails leave_details : leaveList) {
+				if(leave_details.getEmpno() == updateLeaveId.getEmpno()) {
+					leave_details.setEmpno(updateLeaveId.getEmpno());
+					leave_details.setName(updateLeaveId.getName());
+					leave_details.setLeaveStartDate(updateLeaveId.getLeaveStartDate());
+					leave_details.setLeaveEndDate(updateLeaveId.getLeaveEndDate());
+					leave_details.setLeaveType(updateLeaveId.getLeaveType());
+					break;
+				}
+				return "Leave application updated";
+			}
+		}
+		return "Leave application not found";
+		
+	}
+
+}

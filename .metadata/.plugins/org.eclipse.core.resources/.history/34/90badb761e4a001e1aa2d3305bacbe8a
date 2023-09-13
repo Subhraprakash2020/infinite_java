@@ -1,0 +1,22 @@
+package com.java.leave;
+
+import java.util.Scanner;
+
+public class App {
+	
+	 static LeaveBAL bal;
+	  static Scanner sc;
+	  
+	  static {
+		  bal = new LeaveBAL();
+		  sc = new Scanner(System.in);
+	  }
+	  
+
+  public static void main(String[] args) {
+    System.out.println("Hello World!");
+  }
+  
+ 
+
+}

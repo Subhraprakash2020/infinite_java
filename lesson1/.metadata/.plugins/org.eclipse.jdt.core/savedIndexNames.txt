@@ -1,0 +1,9 @@
+INDEX VERSION 1.131+D:\infinite_java\lesson1\.metadata\.plugins\org.eclipse.jdt.core
+332383186.index
+2784440815.index
+1058554808.index
+2328269416.index
+3182830083.index
+405844669.index
+3397293651.index
+1787947736.index

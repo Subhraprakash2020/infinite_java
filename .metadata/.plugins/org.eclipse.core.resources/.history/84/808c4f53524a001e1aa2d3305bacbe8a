@@ -1,0 +1,91 @@
+package com.java.leave;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+
+public class App {
+	
+	 static LeaveBAL bal;
+	  static Scanner sc;
+	  
+	  static {
+		  bal = new LeaveBAL();
+		  sc = new Scanner(System.in);
+	  }
+	  
+
+  public static void main(String[] args) {
+    System.out.println("Hello World!"); 
+    
+    int choice;
+    do {
+    	System.out.println("1. Add leave application");;
+    	System.out.println("2. Show leave application");
+    	
+    	choice = sc.nextInt();
+    	
+    	switch(choice){
+    	case 1:
+    		try {
+				addLeaveMain();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	    break;
+    	case 2:
+    	    showLeaveApplication();
+    	    break;
+    	}
+    }while(choice !=6);
+  }
+  
+  public static void showLeaveApplication() {
+	  List<LeaveDetails> leaveList = bal.showLeaveBal();
+	  for (LeaveDetails leave_details : leaveList) {
+		System.out.println(leave_details);
+	}
+  }
+  
+  public static void addLeaveMain() {
+	  
+	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	  LeaveDetails leave_details = new LeaveDetails();
+	  System.out.println("Enter employ no ::");
+	  leave_details.setEmpno(sc.nextInt());
+	  
+	  System.out.println("Enter employ name :: ");
+	  leave_details.setName(sc.next());
+	  
+	  System.out.println("Enter leave start date (yyyy-MM-dd): ");
+      try {
+          Date leaveStartDate = sdf.parse(sc.next());
+          leave_details.setLeaveStartDate(leaveStartDate);
+      } catch (ParseException e) {
+          System.err.println("Invalid date format. Please use yyyy-MM-dd.");
+          return; // Abort the operation if the date format is invalid
+      }
+	  
+      System.out.println("Enter leave end date (yyyy-MM-dd): ");
+      try {
+          Date leaveEndDate = sdf.parse(sc.next());
+          leave_details.setLeaveEndDate(leaveEndDate);
+      } catch (ParseException e) {
+          System.err.println("Invalid date format. Please use yyyy-MM-dd.");
+          return; // Abort the operation if the date format is invalid
+      }
+      
+      System.out.println("Enter the leavetype:::");
+      leave_details.setLeaveType(LeaveType.valueOf(sc.next()));
+      
+      leave_details.setLeaveStatus(LeaveStatus.valueOf("PENDING"));
+      
+      leave_details.setManagerComments("Hello");
+      
+  }
+ 
+
+}

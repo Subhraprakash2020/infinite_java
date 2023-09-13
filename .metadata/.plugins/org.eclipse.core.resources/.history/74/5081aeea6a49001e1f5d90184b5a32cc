@@ -1,0 +1,43 @@
+package com.java.leave;
+
+import java.time.LocalDate;
+import java.util.Date;
+
+public class LeaveBAL {
+	static StringBuilder sb;
+	static LeaveDAO dao;
+	
+	static {
+		sb = new StringBuilder();
+		dao = new LeaveImpl();
+	}
+	
+//	public String addLeaveBal(LeaveDetails leave_details) {
+//		if(validateLeave(leave_details) == true) {
+//			return dao.addLeaveDao(leave_details;)
+//		}
+//		
+//	}
+	
+	
+	public boolean validateLeave(LeaveDetails leave_details) {
+		boolean flag = true;
+		Date startdate = leave_details.getLeaveStartDate();
+		Date currentdate = new Date();
+		
+		
+		if(!startdate.before(currentdate)) {
+			flag = false;
+			sb.append("Start date cannot be past date");
+		}
+		
+		Date leavedate = leave_details.getLeaveEndDate();
+		if(!leavedate.before(currentdate) && leavedate.after(startdate)){
+			flag = false;
+			sb.append("End date cannot be past date");
+		}
+		
+		return flag;
+	}
+	
+}

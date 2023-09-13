@@ -1,0 +1,46 @@
+package com.java.leave;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class App {
+	
+	 static LeaveBAL bal;
+	  static Scanner sc;
+	  
+	  static {
+		  bal = new LeaveBAL();
+		  sc = new Scanner(System.in);
+	  }
+	  
+
+  public static void main(String[] args) {
+    System.out.println("Hello World!"); 
+  }
+  
+  public static void addLeaveMain() {
+	  
+	  SimpleDateFormat sdf = new SimpleDateFormat();
+	  LeaveDetails leave_details = new LeaveDetails();
+	  System.out.println("Enter employ no ::");
+	  leave_details.setEmpno(sc.nextInt());
+	  
+	  System.out.println("Enter employ name :: ");
+	  leave_details.setName(sc.next());
+	  
+	  System.out.println("Enter leave start date (yyyy-MM-dd): ");
+      try {
+          Date leaveStartDate = sdf.parse(sc.next());
+          leave_details.setLeaveStartDate(leaveStartDate);
+      } catch (ParseException e) {
+          System.err.println("Invalid date format. Please use yyyy-MM-dd.");
+          return; // Abort the operation if the date format is invalid
+      }
+	  
+  }
+ 
+
+}

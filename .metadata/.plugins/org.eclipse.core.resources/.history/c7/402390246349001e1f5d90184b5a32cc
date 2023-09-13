@@ -1,0 +1,28 @@
+package com.java.leave;
+
+public class LeaveBAL {
+	static StringBuilder sb;
+	static LeaveDAO dao;
+	
+	static {
+		sb = new StringBuilder();
+		dao = new LeaveImpl();
+	}
+	
+//	public String addLeaveBal(LeaveDetails leave_details) {
+//		if(validateLeave(leave_details) == true) {
+//			return dao.addLeaveDao(leave_details;)
+//		}
+//		
+//	}
+	
+	
+	public boolean validateLeave(LeaveDetails leave_details) {
+		boolean flag = true;
+		if(leave_details.getleveStartDate())
+		
+		
+		return flag;
+	}
+	
+}

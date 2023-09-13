@@ -1,0 +1,153 @@
+package com.java.agent;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
+
+public class AgentMain {
+	
+	static AgentBAL bal;
+	static Scanner sc;
+	
+	static {
+		bal = new AgentBAL();
+		sc = new Scanner(System.in);
+	}
+	
+	public static void main(String[] args) {
+		int choice;
+		do{
+			System.out.println("1. Add Agent");
+			System.out.println("2. Show Agent");
+			System.out.println("3. Show Agent");
+			System.out.println("4. Delete agent");
+			System.out.println("5. Update Agent");
+			System.out.println("6. Write Agent");
+			System.out.println("7. Read Agent ");
+			System.out.println("8. Enter your choice");
+			System.out.println("9. Exit");
+			
+			System.out.println("Enter your choice  ");
+			choice = sc.nextInt();
+			switch(choice){
+			case 1:
+				try {
+					addAgenrMain();
+				} catch (AgentException e) {
+					System.err.println(e.getMessage());
+				}break;
+			case 2:
+				showAgentMain();
+				break;
+			case 3:
+				searchEmployMain();
+				break;
+			case 4:
+				deleAgentMain();
+				break;
+			case 5:
+				try {
+					updateAgentMain();
+				} catch (AgentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			case 6:
+				try {
+					writeEmployFileBal();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			case 7:
+				try {
+					readEmployFilebal();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			case 8:
+				return;
+			}
+			
+		}while(choice != 6);
+	}
+	
+	public static void writeEmployFileBal() throws IOException{
+		System.out.println(bal.writeEmployFileBal());
+	}
+	
+	public static void readEmployFilebal() throws FileNotFoundException, ClassNotFoundException, IOException{
+		System.out.println(bal.readEmployFileBal());
+	}
+	
+	public static void updateAgentMain() throws AgentException{
+		Agent agentUpdate = new Agent();
+		System.out.println("Enter agent Firstname :: ");
+		agentUpdate.setFirstName(sc.next());
+		System.out.println("Enter agent LastName  ");
+		agentUpdate.setLastName(sc.next());
+		System.out.println("Enter agent city");
+		agentUpdate.setCity(sc.next());
+		System.out.println("Enter agent paymode");
+		agentUpdate.setPayMode(PayMode.valueOf(sc.next()));
+		System.out.println("Enter agent premium");
+		agentUpdate.setPremium(sc.nextDouble());
+		System.out.println(bal.updateAgentBal(agentUpdate));
+	}
+	
+	public static void deleAgentMain(){
+		int agentid;
+		System.out.println("Enter agent id");
+		agentid = sc.nextInt();
+		System.out.println(bal.deleteAgentBal(agentid));
+	}
+	
+	public static void searchEmployMain(){
+		int agentid;
+		System.out.println("Enter  agent Id");
+		agentid = sc.nextInt();
+		Agent agent = bal.searAgentBal(agentid);
+		if(agent != null){
+			System.out.println("Agent not found");
+		}
+		else{
+			System.out.println(agent);
+		}
+		
+	}
+	
+	public static void showAgentMain(){
+		List<Agent> agentList = bal.showAgentBal();
+		for (Agent agent : agentList) {
+			System.out.println(agent);
+		}
+	}
+	
+	
+	public static void addAgenrMain() throws AgentException{
+		Agent agent = new Agent();
+//		agent.setAgentId(agent.agentList()+1);
+		System.out.println("Enter agent FirstName   ");
+		agent.setFirstName(sc.next());
+		System.out.println("Enter agent LastName   ");
+		agent.setLastName(sc.next());
+		System.out.println("Enter city  ");
+		agent.setCity(sc.next());
+		System.out.println("Enter paymode(MONTHLY, HALFYEARLY, YEARLY, QUARTERLY)   ");
+		agent.setPayMode(PayMode.valueOf(sc.next()));
+		System.out.println("Ente premium");
+		agent.setPremium(sc.nextDouble());
+		System.out.println(bal.addAgentBal(agent));
+	}
+}

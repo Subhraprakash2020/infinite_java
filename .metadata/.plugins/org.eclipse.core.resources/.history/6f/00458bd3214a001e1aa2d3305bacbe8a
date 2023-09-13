@@ -1,0 +1,62 @@
+package com.java.leave;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+import java.util.List;
+
+public class LeaveBAL {
+	static StringBuilder sb;
+	static LeaveDAO dao;
+	
+	static {
+		sb = new StringBuilder();
+		dao = new LeaveImpl();
+	}
+	
+	
+	public List<LeaveDetails> showLeaveBal(){
+		return dao.showLeaveDao();
+	}
+	
+	public String addLeaveBal(LeaveDetails leave_details) throws LeaveException {
+		if(validateLeave(leave_details) == true) {
+			return dao.addLeaveDao(leave_details);
+		}
+		throw new LeaveException(sb.toString());
+		
+		
+	}
+	
+	
+	public boolean validateLeave(LeaveDetails leave_details) {
+		boolean flag = true;
+		Date startdate = leave_details.getLeaveStartDate();
+		Date currentdate = new Date();
+		
+		
+		if(!startdate.before(currentdate)) {
+			flag = false;
+			sb.append("Start date cannot be past date");
+		}
+		
+		Date leavedate = leave_details.getLeaveEndDate();
+		if(!leavedate.before(currentdate) && leavedate.after(startdate)){
+			flag = false;
+			sb.append("End date cannot be past date");
+		}
+		
+		
+		
+		long totaldays = leavedate.getDate() - startdate.getDate();
+		
+		if(totaldays > 15) {
+			flag = false;
+			sb.append("Leave cannot get mote that 15 days");
+		}
+		
+		return flag;
+	}
+	
+}
