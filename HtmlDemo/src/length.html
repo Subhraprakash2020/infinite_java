@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function show(){
+            var str = "Welcome to javascript programming....";
+            var result = " ";
+
+            result += "Length of string is " + str.length + "<br/>";
+            result += "First occurance of char 'o' is "+ str.indexOf("o")+ "<br/>";
+            result += "Chat at 5th postion " + str.charAt5 + "<br/>";
+            result += "Lower case string "+ str.toLocaleLowerCase() + "<br/>";
+            result += "Upper case string " + str.toUpperCase() + "<br/>";
+            result += "Repleced String is " + str.replace("javascript ", "jquery") + + "<br/>";
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+</head>
+<body onload="show()">
+    <span id = "result"></span>
+</body>
+</html>

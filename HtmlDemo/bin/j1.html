@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+	function mult(){
+		if(frmCalc.firstNo.value == ""){
+			document.getElementById("err1").innerHTML = "Please Enter first Number";
+			return;
+		}
+		else{
+			document.getElementById("err1").innerHTML = "";
+		}
+		
+		if(frmCalc.secondNo.value == ""){
+			document.getElementById("err2").innerHTML = "Please enter second number";
+		}else{
+			document.getElementById("err2").innerHTML = "";
+		}
+		var firstNo,secondNo,result;
+		firstNo = frmCalc.firstNo.value;
+		secondNo = frmCalc.secondNo.value;
+		result = firstNo*secondNo;
+		frmCalc.result.value = result;
+	}
+	
+	function sub(){
+		var firstNo,secondNo,result;
+		firstNo = frmCalc.firstNo.value;
+		secondNo = frmCalc.secondNo.value;
+		result = firstNo-secondNo;
+		frmCalc.result.value = result;
+	}
+	
+	function sum(){
+		var firstNo,secondNo,result;
+		
+		num1 = parseInt(frmCalc.firstNo.value);
+		num2 = parseInt(frmCalc.secondNo.value);
+		result = num1+num2;
+		frmCalc.result.value = result;
+	}
+	
+</script>
+</head>
+<body>
+<form  name="frmCalc">
+	<table border="3" align="center">
+		<tr>
+			<th colspan="2">Calculation Form</th>
+		</tr>
+		<tr>
+			<th>First Number</th>
+			<td> 
+				<input type="number" name="firstNo" />
+				<span id = "err1"></span>
+			</td>
+		</tr>
+		<tr>
+			<th>Second Number</th>
+			<td>
+				<input type="number" name="secondNo" />
+				<span id = "err2"></span>
+			</td>
+		</tr>
+		<tr>
+			<th>Result</th>
+			<td> 
+				<input type="number" name="result"  />
+			</td>
+		</tr>
+		<tr>
+			<th colspan="2">
+				<input type="button" value="Sum" onclick="sum()" />
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" value="Sub" onclick="sub()"/>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" value="Mult"onclick="mult()" />
+			</th>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

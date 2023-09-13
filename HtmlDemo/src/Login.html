@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+    function login(){
+        var user, pwd;
+        user = frmlogin.userName.value;
+        pwd = frmlogin.password.value;
+        if(user == "infinite" && pwd == "infinite" ){
+            window.open("http://www.google.com");
+        }else{
+            alert("Invalid passsword");
+        }
+    }
+</script>
+</head>
+<body>
+		<form name="frmlogin">
+			<table border="3" align="center">
+				<tr>
+					<th colspan="2">
+						Login page
+					</th>
+				</tr>
+				<tr>
+					<th>User Name</th>
+					<td>
+						<input type="text" name="userName"
+					</td>
+				</tr>
+					<tr>
+						<th>Password</th>
+						<td>
+							<input type="password" name="password"
+						</td>
+					</tr>
+					<tr>
+						<th colspan="2">
+							<input type ="button" value="login" onclick="login()"/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="reset" value="reset" />
+						</th>
+					</tr>
+			</table>
+		</form>
+</body>
+
+</html

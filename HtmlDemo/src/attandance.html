@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       
+        function show(){
+            var res1 = frmData.name1.value;
+           if(frmData.name1.checked == true ){
+            document.getElementById("result1").innerHTML = res1 +" "+"is present";
+           }else{
+            document.getElementById("result1").innerHTML = "";
+           }
+
+        }
+    </script>
+</head>
+<body>
+    <form name = "frmData" >
+        
+        <input type="checkbox" name = "name1" value="Subhra" onchange="show()">Subhra<br>
+        <input type="checkbox" name = "name2" value="Ariz" onchange="show()">Ariz<br>
+        <input type="checkbox" name = "name3" value="Nitish" onchange="show()">Nitish<br>
+        <span id = "result1"></span>
+        <span id = "result2"></span>
+        <span id = "result3"></span>
+        
+    </form>
+  
+</body>
+</html>

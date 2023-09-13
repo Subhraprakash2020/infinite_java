@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var count = 0;
+        var questions = ["1. C language implemented by",
+                          "2. COBOL statans for",
+                        "3. What is oops"];
+        function load(){
+            document.getElementById("question").innerHTML = questions[count];
+        }
+        function next(){
+            
+            if(questions.length -1 == count)
+            {
+                
+                alert("no");
+                return
+            }
+            count++;
+            load();
+            
+            
+        }
+        function prev(){
+            count--;
+            load();
+        }
+    </script>
+</head>
+<body onload="load()">
+    <form name="frmData">
+        <p id = "question"></p>
+        <br><br>
+        <input type="button" value="Next" onclick="next()" > &nbsp;
+        <input type="button" value="Previous" onclick="prev()">
+    </form>
+</body>
+</html>

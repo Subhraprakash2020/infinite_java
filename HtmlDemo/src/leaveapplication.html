@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        
+    function show(){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+
+    var currentDate = yyyy + '-' + mm + '-' + dd;
+    var startInput = document.getElementsByName("start")[0];
+    var endInput = document.getElementsByName("end")[0];
+    var start = new Date(startInput.value);
+    var end = new Date(endInput.value);
+    if (currentDate < startInput.value) {
+        console.log("right");
+        if (start > end) {
+        alert("End date cannot be earlier than the start date");
+    } else {
+        console.log("Processed");
+    }
+    var no_of_days = Math.floor((end - start) / (1000 * 3600 * 24));
+    console.log("days", no_of_days);
+    document.getElementById("today_date").value = currentDate;
+    document.getElementById("no_of_days").textContent = `${no_of_days}`;
+    } else {
+        alert("Sorry");
+    }
+
+    // if (start > end) {
+    //     alert("End date cannot be earlier than the start date");
+    // } else {
+    //     console.log("Processed");
+    // }
+    // var no_of_days = Math.floor((end - start) / (1000 * 3600 * 24));
+    // console.log("days", no_of_days);
+    // document.getElementById("today_date").value = currentDate;
+    // document.getElementById("no_of_days").textContent = `${no_of_days}`;
+        
+        } 
+    </script>
+</head>
+<body>
+    <form name = "frmlogin">
+        <table border="3" align="center">
+            <tr>
+                <th colspan="2">
+                    Leave Application From
+                </th>
+            </tr>
+            <tr>
+                <th>Leave Id</th>
+                <td>
+                    <select name = "leaveid">
+                        <option value="lev1">1001</option>
+                        <option value="lev2">1002</option>
+                        <option value="lev3">1003</option>
+                        <option value="lev4">1004</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Manager Name</th>
+                <td>
+                    <select name = "manager">
+                        <option value="Murari">Murari</option>
+                        <option value="Ariz">Ariz</option>
+                        <option value="Anirudh">Anirudh</option>
+                        <option value="Nitish">Nitish</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Leave Start Date</th>
+                <td>
+                    <input type="Date" name="start" onchange="show()" required>
+                </td>
+            </tr>
+            <tr>
+                <th>Leave End Date</th>
+                <td>
+                    <input type="Date" name = "end" onchange="show()" required>
+                </td>
+            </tr>
+            <tr>
+                <th>No OF Days</th>
+                <td>
+                    <p id= "no_of_days"></p>
+                </td>
+            </tr>
+            <tr>
+                <th>Leave Type</th>
+                <td>
+                    <select name = "leavetype">
+                        <option value="lev1">EL</option>
+                        <option value="lev2">PL</option>
+                        <option value="lev3">SL</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Leave Status</th>
+                <td>
+                    <select name = "leaveStatus">
+                        <option value="lev1">ACCEPTED</option>
+                        <option value="lev2">REJECTED</option>
+                        <option value="lev3">PENDING</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Applied on</th>
+                <td>
+                    <input type="text" id="today_date" readonly>
+                </td>
+            </tr>
+            <tr>
+                <th>Manager Commnet</th>
+                <td>
+                    <input type="text">
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <input type="button" value="Submit" onclick="show()">
+                    <input type="button" value="Reset">
+                </th>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

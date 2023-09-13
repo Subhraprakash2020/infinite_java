@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function show(){
+            var result = frmData.Student.value;
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+</head>
+<body>
+    <form name = "frmData">
+        <center>
+            Select Name:
+            <select name = "Student" onchange="show()">
+                <option value="Riddhi">Riddhi</option>
+                <option value="Abhishek">Abhishek</option>
+                <option value="Azhar">Azhar</option>
+                <option value="Ankit">Ankit</option>
+            </select>
+            <span id = "result"></span>
+        </center>
+    </form>
+</body>
+</html>
