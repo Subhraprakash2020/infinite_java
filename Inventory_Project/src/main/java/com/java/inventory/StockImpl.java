@@ -24,7 +24,7 @@ public class StockImpl implements StockDAO{
              }
          }
          maxStockId++;
-        String newStockId = String.format("S%03d", maxStockId);
+        String newStockId = String.format("O%03d", maxStockId);
         
         
 		String cmd = "Insert into stock(StockId,ItemName,Price,quantityAvail) values(?,?,?,?)";
