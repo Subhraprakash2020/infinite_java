@@ -1,158 +1,160 @@
 package com.java.agent;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
-import org.apache.log4j.Logger;
-
 public class AgentMain {
-	
-	private static final Logger log = Logger.getLogger("com.java.agent.AgentBAL");
-	
-	static AgentBAL bal;
-	static Scanner sc;
-	
-	static {
-		bal = new AgentBAL();
-		sc = new Scanner(System.in);
-	}
-	
 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
 		int choice;
-		do{
-			System.out.println("1. Add Agent");
-			System.out.println("2. Show Agent");
-			System.out.println("3. Show Agent");
-			System.out.println("4. Delete agent");
+		do {
+			System.out.println("Enter your choice ");
+			System.out.println("1. Show all Agent List");
+			System.out.println("2. Insert agent in database");
+			System.out.println("3. Search agent from database");
+			System.out.println("4. Delete agent from databae");
 			System.out.println("5. Update Agent");
-			System.out.println("6. Write Agent");
-			System.out.println("7. Read Agent ");
-			System.out.println("8. Enter your choice");
-			System.out.println("9. Exit");
+			System.out.println("6. EXit");
 			
-			System.out.println("Enter your choice  ");
 			choice = sc.nextInt();
+			
 			switch(choice){
 			case 1:
-				try {
-					addAgenrMain();
-				} catch (AgentException e) {
-//					System.err.println(e.getMessage());
-					log.error(e.getMessage());
-				}break;
+				ShowEmployMain();
+				break;
 			case 2:
-				showAgentMain();
+				CreateAgentMain();
 				break;
 			case 3:
-				searchEmployMain();
+				SearchAgentMain();
 				break;
 			case 4:
-				deleAgentMain();
+				DeleteAgentMain();
 				break;
 			case 5:
-				try {
-					updateAgentMain();
-				} catch (AgentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				UpdateAgentMain();
 				break;
-			case 6:
-				try {
-					writeEmployFileBal();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				break;
-			case 7:
-				try {
-					readEmployFilebal();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				break;
-			case 8:
-				return;
+				
 			}
 			
-		}while(choice != 6);
-	}
-	
-	public static void writeEmployFileBal() throws IOException{
-		System.out.println(bal.writeEmployFileBal());
-	}
-	
-	public static void readEmployFilebal() throws FileNotFoundException, ClassNotFoundException, IOException{
-		System.out.println(bal.readEmployFileBal());
-	}
-	
-	public static void updateAgentMain() throws AgentException{
-		Agent agentUpdate = new Agent();
-		System.out.println("Enter agent Firstname :: ");
-		agentUpdate.setFirstName(sc.next());
-		System.out.println("Enter agent LastName  ");
-		agentUpdate.setLastName(sc.next());
-		System.out.println("Enter agent city");
-		agentUpdate.setCity(sc.next());
-		System.out.println("Enter agent paymode");
-		agentUpdate.setPayMode(PayMode.valueOf(sc.next()));
-		System.out.println("Enter agent premium");
-		agentUpdate.setPremium(sc.nextDouble());
-		System.out.println(bal.updateAgentBal(agentUpdate));
-	}
-	
-	public static void deleAgentMain(){
-		int agentid;
-		System.out.println("Enter agent id");
-		agentid = sc.nextInt();
-		System.out.println(bal.deleteAgentBal(agentid));
-	}
-	
-	public static void searchEmployMain(){
-		int agentid;
-		System.out.println("Enter  agent Id");
-		agentid = sc.nextInt();
-		Agent agent = bal.searAgentBal(agentid);
-		if(agent != null){
-			System.out.println("Agent not found");
-		}
-		else{
-			System.out.println(agent);
-		}
+		}while(choice !=6);
+		
+		
+		
 		
 	}
-	
-	public static void showAgentMain(){
-		List<Agent> agentList = bal.showAgentBal();
+	public static void ShowEmployMain() {
+		AgentDAO dao = new AgentDaoImpl();
+		List<Agent> agentList = null;
+		
+		try {
+			agentList = dao.showAgentDao();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for (Agent agent : agentList) {
 			System.out.println(agent);
 		}
 	}
-	
-	
-	public static void addAgenrMain() throws AgentException{
+	public static void CreateAgentMain() {
+		Scanner sc = new Scanner(System.in);
 		Agent agent = new Agent();
-//		agent.setAgentId(agent.agentList()+1);
-		System.out.println("Enter agent FirstName   ");
-		agent.setFirstName(sc.next());
-		System.out.println("Enter agent LastName   ");
-		agent.setLastName(sc.next());
-		System.out.println("Enter city  ");
+		System.out.println("Enter agent name :");
+		agent.setName(sc.next());
+		System.out.println("Enter agent city :");
 		agent.setCity(sc.next());
-		System.out.println("Enter paymode(MONTHLY, HALFYEARLY, YEARLY, QUARTERLY)   ");
-		agent.setPayMode(PayMode.valueOf(sc.next()));
-		System.out.println("Ente premium");
+		System.out.println("Enter agent gender :");
+		agent.setGender(Gender.valueOf(sc.next()));
+		System.out.println("Enter maritialstatus :");
+		agent.setMaritalStatus(sc.nextInt());
+		System.out.println("Enter premium :");
 		agent.setPremium(sc.nextDouble());
-		System.out.println(bal.addAgentBal(agent));
+		
+		AgentDAO dao = new AgentDaoImpl();
+		try {
+			System.out.println(dao.createAgentDao(agent));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void SearchAgentMain() {
+		Scanner sc = new Scanner(System.in);
+		int agentId;
+		System.out.println("Enter project agentId");
+		agentId = sc.nextInt();
+		AgentDAO dao = new AgentDaoImpl();
+		
+		try {
+			Agent agent  = dao.searchAgentDao(agentId);
+			if(agent != null) {
+				System.out.println(agent);
+			}
+			else {
+				System.out.println("Record not fount");
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void DeleteAgentMain() {
+		Scanner sc = new Scanner(System.in);
+		int agentId;
+		System.out.println("Ente agentID :");
+		agentId = sc.nextInt();
+		
+		AgentDAO dao = new AgentDaoImpl();
+		
+		try {
+			System.out.println(dao.deleteAgentDao(agentId));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void UpdateAgentMain(){
+		Scanner sc = new Scanner(System.in);
+		Agent agent = new Agent();
+		System.out.println("Enter agent id:");
+		agent.setAgentId(sc.nextInt());
+		System.out.println("Enter agent name :");
+		agent.setName(sc.next());
+		System.out.println("Enter agent city :");
+		agent.setCity(sc.next());
+		System.out.println("Enter agent gender :");
+		agent.setGender(Gender.valueOf(sc.next()));
+		System.out.println("Enter maritialstatus :");
+		agent.setMaritalStatus(sc.nextInt());
+		System.out.println("Enter premium :");
+		agent.setPremium(sc.nextDouble());
+		
+		AgentDAO dao = new AgentDaoImpl();
+		try {
+			System.out.println(dao.updateAgentDao(agent));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
