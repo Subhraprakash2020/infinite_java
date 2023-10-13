@@ -1,0 +1,16 @@
+package com.java.Day3;
+
+class SimpleThread 	extends Thread{
+	public void run() {
+		for(int i=0;i<=5;i++) {
+			System.out.println();
+		}
+	}
+}
+
+public class SimpleMultithreading {
+	public static void main(String[] args) {
+		SimpleThread thread1 = new SimpleThread();
+		SimpleThread thread2 = new SimpleThread();
+	}
+}

@@ -1,0 +1,30 @@
+package com.java.Day1;
+
+//Take a class as student
+class Student {
+	//Declaration of variable
+	int rollno;
+	String name;
+	
+   //Create a constructor
+	public Student(int rollno, String name) {
+		this.rollno = rollno;
+		this.name = name;
+	}
+
+	//Create antoher mathod for display
+	void display() {
+		System.out.println(rollno + " " + name);
+	}
+
+}
+
+// main method
+public class ThisKeyWord {
+	public static void main(String[] args) {
+		//Object crateing name s1
+		Student s1 = new Student(111,"zzzzzz");
+		//call the method display
+		s1.display();
+	}
+}

@@ -1,0 +1,7 @@
+package com.java.Day2;
+
+public class MethodOverriding {
+	public static void main(String[] args) {
+		
+	}
+}

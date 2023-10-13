@@ -1,0 +1,18 @@
+package com.java.Day1;
+import java.util.*;
+
+public class PriorityQueue {
+    public static void main(String[] args) {
+        PriorityQueue queue = new PriorityQueue();
+        queue.add("amit");
+        queue.add("Vijay Raj");
+        queue.add("JaiShankar");
+
+        // Rest of your code...
+    }
+
+	private void add(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+}

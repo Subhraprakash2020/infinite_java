@@ -1,0 +1,22 @@
+package com.java.Day1;
+
+import java.util.*;
+
+public class ListA {
+	public static void main(String[] args) {
+		List<String> list = new ArrayList<String>();
+		list.add("bus");
+		list.add("car");
+		
+		list.set(1, "truck");
+		list.remove(1);
+		
+		for (String string : list) {
+			System.out.println(string);
+		}
+		
+		System.out.println(list.get(1));
+		
+		
+	}
+}

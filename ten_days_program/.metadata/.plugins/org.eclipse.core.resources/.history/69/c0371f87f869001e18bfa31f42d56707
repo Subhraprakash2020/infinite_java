@@ -1,0 +1,13 @@
+package com.java.Day3;
+
+interface Printable {
+	void print();
+}
+
+interface Showable extends Printable {
+	void show();
+}
+
+public class Interface_inheritance {
+
+}

@@ -1,0 +1,15 @@
+package com.java.Day1;
+
+public class ThisKeyWord {
+	int rollno;
+	String name;
+	
+	public ThisKeyWord(int rollno, String name) {
+		this.rollno = 45;
+		this.name = "zzzzz";
+	}
+	
+	void display() {
+		System.out.println(rollno + " "+ name);
+	}
+}

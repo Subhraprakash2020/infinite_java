@@ -1,0 +1,26 @@
+package com.java.Day1;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+
+public class LinkedListA {
+	public static void main(String args[]) {
+		
+		//Creaint a linklist 
+		LinkedList<String> al = new LinkedList<String>();
+		
+		//Adding element in linkedlist
+		al.add("Ravi");
+		al.add("Vijay");
+		al.add("Ravi");
+		al.add("Ajay");
+		
+		al.remove("Ajay");
+		
+		//Get the list through iterotor
+		Iterator<String> itr = al.iterator();
+		while (itr.hasNext()) {
+			System.out.println(itr.next());
+		}
+	}
+}

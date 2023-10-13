@@ -1,0 +1,4 @@
+INDEX VERSION 1.132+D:\ten_days_program\.metadata\.plugins\org.eclipse.jdt.core
+3214872051.index
+1865797976.index
+384871252.index

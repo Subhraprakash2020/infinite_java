@@ -1,0 +1,25 @@
+package com.java.Day3;
+
+interface Printable {
+	void print();
+}
+
+interface Showable {
+	void show();
+}
+
+public class MutlipleInheritance implements Printable,Showable{
+
+	@Override
+	public void show() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

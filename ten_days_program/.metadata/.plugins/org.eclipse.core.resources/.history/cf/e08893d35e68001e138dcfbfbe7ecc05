@@ -1,0 +1,25 @@
+package com.java.Day1;
+
+class Animal{
+	String color = "White";
+}
+
+class Dog extends Animal{
+	String color = "Black";
+	void printColor() {
+		//Print the color from this Dog class
+		System.out.println(color);
+		//Print the color from Animal class through super keyword
+		System.out.println(super.color);
+	}
+}
+
+public class SuperKeyWord {
+	public static void main(String[] args) {
+		// Create a object name d
+		Dog d = new Dog();
+		// Call the method using object
+		d.printColor();
+		
+	}
+}

@@ -1,0 +1,22 @@
+package com.java.Day1;
+
+class Student {
+	int rollno;
+	String name;
+
+	public Student(int rollno, String name) {
+		this.rollno = 45;
+		this.name = "zzzzz";
+	}
+
+	void display() {
+		System.out.println(rollno + " " + name);
+	}
+
+}
+
+public class ThisKeyWord {
+	public static void main(String[] args) {
+
+	}
+}

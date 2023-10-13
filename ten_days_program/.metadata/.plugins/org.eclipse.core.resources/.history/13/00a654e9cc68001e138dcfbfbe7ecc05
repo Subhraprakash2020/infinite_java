@@ -1,0 +1,9 @@
+package com.java.Day1;
+
+import java.util.Map;
+
+public class MapA {
+	public static void main(String[] args) {
+		Map<Integer, String> map = new Map<Integer, String>();
+	}
+}

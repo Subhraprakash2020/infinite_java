@@ -1,0 +1,13 @@
+package com.java.Day3;
+
+interface Printable {
+	void print();
+}
+
+interface Showable {
+	void show();
+}
+
+public class MutlipleInheritance {
+
+}
