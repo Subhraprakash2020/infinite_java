@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee /WEB-INF/schema/web-facesconfig_2_0.xsd"
+	version="2.0" metadata-complete="false">
+    <managed-bean>
+        <managed-bean-name>patientrepo</managed-bean-name>
+        <managed-bean-class>com.java.ejb.PatientRepo</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>reportEjb</managed-bean-name>
+        <managed-bean-class>com.java.ejb.EjbRepoImpl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>customerController</managed-bean-name>
+        <managed-bean-class>com.java.ejb.EjbController</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>patientrepo</property-name>
+            <property-class>com.java.ejb.PatientRepo</property-class>
+            <value>#{patientrepo}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>daoImpl</property-name>
+            <property-class>com.java.ejb.EjbRepoImpl</property-class>
+            <value>#{reportEjb}</value>
+        </managed-property>
+    </managed-bean>
+</faces-config>
